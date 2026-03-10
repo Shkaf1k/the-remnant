@@ -8,24 +8,23 @@
         body { 
             background-color: #0a0a0a; 
             background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
-            background-size: 30px 30px; /* Эффект сетки или пыли */
+            background-size: 30px 30px;
             color: #d1d1d1; 
             font-family: 'Courier New', Courier, monospace; 
-            margin: 0; padding: 0;
+            margin: 0; padding: 40px 0;
             display: flex; justify-content: center; align-items: center; min-height: 100vh;
         }
 
         .container { 
-            max-width: 700px; width: 90%;
+            max-width: 800px; width: 90%;
             background: rgba(20, 20, 20, 0.95);
             border: 2px solid #3d3d3d;
-            border-top: 5px solid #ff4500; /* Оранжевый акцент */
+            border-top: 5px solid #ff4500;
             padding: 40px;
             box-shadow: 0 0 50px rgba(0,0,0,1), 0 0 10px rgba(255, 69, 0, 0.1);
             position: relative;
         }
 
-        /* Эффект виньетки по краям */
         .container::before {
             content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             box-shadow: inset 0 0 100px rgba(0,0,0,0.8); pointer-events: none;
@@ -34,16 +33,42 @@
         h1 { 
             color: #ff4500; font-size: 3rem; text-transform: uppercase; 
             letter-spacing: 8px; margin-bottom: 5px; text-shadow: 2px 2px #000;
+            text-align: center;
         }
 
         .slogan { 
-            color: #888; font-style: italic; margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px;
+            color: #888; font-style: italic; margin-bottom: 40px; border-bottom: 1px solid #333; 
+            padding-bottom: 20px; text-align: center;
         }
 
-        .features h3 { color: #ff8c00; text-transform: uppercase; letter-spacing: 2px; }
+        .features h3, .media-section h3 { 
+            color: #ff8c00; text-transform: uppercase; letter-spacing: 2px; 
+            margin-top: 30px; border-bottom: 1px solid #222; padding-bottom: 5px;
+        }
         
         ul { list-style: none; padding: 0; }
         li { margin: 15px 0; font-size: 1.1rem; border-left: 3px solid #ff4500; padding-left: 15px; }
+
+        /* Стили для Медиа-блоков */
+        .media-section { margin-top: 40px; }
+        
+        .video-container { 
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+            border: 1px solid #3d3d3d; margin-top: 15px;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.05);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .gallery { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; 
+        }
+        .gallery img { 
+            width: 100%; height: auto; border: 1px solid #3d3d3d; 
+            filter: grayscale(60%) contrast(1.2); transition: 0.4s;
+        }
+        .gallery img:hover { 
+            filter: grayscale(0%) contrast(1); border-color: #ff4500; transform: scale(1.02);
+        }
 
         .btn { 
             display: block; width: 100%; padding: 20px; margin-top: 40px;
@@ -57,7 +82,6 @@
             background: #ff4500; color: #000; box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
         }
 
-        /* Эффект шума старого монитора */
         .scanline {
             width: 100%; height: 2px; background: rgba(255,255,255,0.03);
             position: fixed; top: 0; left: 0; pointer-events: none; z-index: 100;
@@ -73,7 +97,7 @@
         <p class="slogan">Твій шанс вижити. Український пост-апокаліпсис на Godot 4.6.1</p>
         
         <div class="features">
-            <h3>Статус системи:</h3>
+            <h3>📂 СТАТУС СИСТЕМИ:</h3>
             <ul>
                 <li>[ OK ] Реалістична зміна дня та ночі</li>
                 <li>[ OK ] Система виживання та метаболізму</li>
@@ -82,8 +106,28 @@
             </ul>
         </div>
 
-        <p style="margin-top: 30px; font-size: 0.9rem; color: #666;">Версія розробки: Alpha 0.0.1</p>
-        <a href="https://discord.gg" class="btn">ВХІД ДО ТЕРМІНАЛУ DISCORD</a>
+        <!-- ТРЕЙЛЕР -->
+        <div class="media-section">
+            <h3>📀 АРХІВНИЙ ЗАПИС: ТРЕЙЛЕР</h3>
+            <div class="video-container">
+                <!-- Вставь ID своего видео после /embed/ -->
+                <iframe src="https://www.youtube.com" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- СКРИНШОТЫ -->
+        <div class="media-section">
+            <h3>📸 ВІЗУАЛЬНІ ДАНІ (СКРІНШОТИ)</h3>
+            <div class="gallery">
+                <!-- Замени пути на свои скриншоты -->
+                <img src="https://via.placeholder.com" alt="Screenshot 1">
+                <img src="https://via.placeholder.com" alt="Screenshot 2">
+            </div>
+        </div>
+
+        <p style="margin-top: 30px; font-size: 0.8rem; color: #444; text-align: center;">ID: TERMINAL-4.6.1 | Версія розробки: Alpha 0.0.1</p>
+        
+        <a href="https://discord.gg" class="btn">ПІДКЛЮЧИТИСЬ ДО ТЕРМІНАЛУ DISCORD</a>
     </div>
 </body>
 </html>
