@@ -31,114 +31,81 @@
             position: relative;
         }
 
-        .container::before {
-            content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.8); pointer-events: none;
+        /* Фиксированная кнопка Discord в углу */
+        .discord-fixed {
+            position: fixed; bottom: 20px; right: 20px;
+            background: #5865F2; color: white;
+            padding: 15px 25px; border-radius: 5px;
+            text-decoration: none; font-weight: bold;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+            z-index: 1000; transition: 0.3s;
+            display: flex; align-items: center; gap: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
+        .discord-fixed:hover { transform: scale(1.1); background: #4752c4; }
 
         .terminal-log {
             font-size: 0.75rem; color: #444; text-align: left; margin-bottom: 25px;
-            border-bottom: 1px solid #222; padding-bottom: 10px; line-height: 1.4;
+            border-bottom: 1px solid #222; padding-bottom: 10px;
         }
-        .terminal-log::after { content: "_"; animation: cursor-blink 1s infinite; }
-        @keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         h1 { 
             color: #ff4500; font-size: clamp(2rem, 8vw, 3.5rem); text-transform: uppercase; 
-            letter-spacing: 10px; margin-bottom: 5px; text-shadow: 3px 3px #000;
-            text-align: center; transition: 0.2s;
+            letter-spacing: 10px; margin-bottom: 5px; text-align: center;
         }
-        h1:hover { animation: glitch 0.3s infinite; color: #fff; cursor: crosshair; }
-
-        .slogan { color: #666; font-style: italic; margin-bottom: 30px; text-align: center; }
 
         .system-status { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         .status-bar { width: 120px; height: 14px; border: 1px solid #333; position: relative; background: #000; }
-        .fill { height: 100%; position: absolute; top: 0; left: 0; box-shadow: 0 0 10px currentColor; }
-        .hp { background: #ff4500; color: rgba(255,69,0,0.5); }
-        .hunger { background: #ffa500; color: rgba(255,165,0,0.5); }
-        .stamina { background: #00ff7f; color: rgba(0,255,127,0.5); }
-        .status-bar span { position: absolute; width: 100%; text-align: center; z-index: 2; top: -18px; font-size: 0.65rem; color: #555; font-weight: bold; }
+        .fill { height: 100%; position: absolute; top: 0; left: 0; }
+        .hp { background: #ff4500; }
+        .hunger { background: #ffa500; }
+        .stamina { background: #00ff7f; }
 
-        .features h3, .media-section h3 { 
-            color: #ff8c00; text-transform: uppercase; letter-spacing: 2px; 
-            margin-top: 40px; border-bottom: 1px solid #222; padding-bottom: 5px;
+        .media-section h3 { color: #ff8c00; text-transform: uppercase; margin-top: 40px; border-bottom: 1px solid #222; }
+
+        /* Блок загрузки */
+        .download-box {
+            margin-top: 50px; padding: 30px;
+            border: 1px dashed #ff4500; background: rgba(255, 69, 0, 0.05);
+            text-align: center;
         }
-        
-        ul { list-style: none; padding: 0; }
-        li { margin: 15px 0; font-size: 1rem; border-left: 3px solid #ff4500; padding-left: 15px; color: #aaa; }
+        .download-btn {
+            display: inline-block; padding: 20px 40px; margin-top: 20px;
+            background: #ff4500; color: #000;
+            text-decoration: none; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 3px;
+            transition: 0.3s;
+        }
+        .download-btn:hover { background: #fff; box-shadow: 0 0 20px #fff; }
 
-        /* Команда */
         .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
-        .team-card { background: #0d0d0d; border: 1px solid #222; padding: 15px; transition: 0.3s; }
-        .team-card:hover { border-color: #ff4500; background: #111; box-shadow: 0 0 15px rgba(255, 69, 0, 0.1); }
-        .team-card .role { font-size: 0.65rem; color: #666; letter-spacing: 2px; }
-        .team-card .name { font-size: 1.3rem; color: #ff8c00; margin: 5px 0; font-weight: bold; }
-        .team-card .status-online { font-size: 0.6rem; color: #00ff7f; opacity: 0.8; }
-
-        .media-section { margin-top: 40px; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; border: 1px solid #333; margin-top: 15px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; filter: contrast(1.1) grayscale(0.2); }
-
-        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
-        .gallery img { width: 100%; height: auto; border: 1px solid #333; filter: grayscale(100%); transition: 0.4s; cursor: pointer; }
-        .gallery img:hover { filter: grayscale(0%); border-color: #ff4500; transform: scale(1.03); }
-
-        .roadmap { background: #0d0d0d; padding: 15px; border: 1px solid #1a1a1a; margin-top: 15px; font-size: 0.85rem; }
-        .step { margin-bottom: 8px; color: #444; }
-        .step.done { color: #00ff7f; opacity: 0.7; }
-        .step.active { color: #ff4500; font-weight: bold; animation: pulse 2s infinite; }
-
-        .btn { 
-            display: block; width: 100%; padding: 22px; margin-top: 50px;
-            background: transparent; border: 2px solid #ff4500;
-            color: #ff4500; text-decoration: none; font-weight: bold;
-            text-transform: uppercase; letter-spacing: 4px; transition: 0.3s;
-            text-align: center; box-sizing: border-box;
-        }
-        .btn:hover { background: #ff4500; color: #000; box-shadow: 0 0 30px rgba(255, 69, 0, 0.6); transform: translateY(-2px); }
+        .team-card { background: #0d0d0d; border: 1px solid #222; padding: 15px; }
 
         .scanline { width: 100%; height: 3px; background: rgba(255,255,255,0.02); position: fixed; top: 0; left: 0; pointer-events: none; z-index: 100; animation: move 6s linear infinite; }
         @keyframes move { from { top: 0; } to { top: 100%; } }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-3px, 2px); }
-            40% { transform: translate(-3px, -2px); }
-            60% { transform: translate(3px, 2px); }
-            80% { transform: translate(3px, -2px); }
-            100% { transform: translate(0); }
-        }
-        @media (max-width: 600px) { .team-grid, .gallery { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <div class="noise"></div>
     <div class="scanline"></div>
+
+    <!-- Фиксированная кнопка Discord -->
+    <a href="https://discord.gg" class="discord-fixed" target="_blank">
+        <span>COMMUNITY DISCORD</span>
+    </a>
+
     <div class="container">
         <div class="terminal-log">
-            > AUTHENTICATING... [SUCCESS]<br>
-            > LOADING CORE ASSETS... [100%]<br>
-            > ESTABLISHING SECURE CONNECTION TO THE REMNANT NODE...
+            > SYSTEM READY...<br>
+            > ACCESSING DATA NODE... [OK]
         </div>
 
         <h1>THE REMNANT</h1>
-        <p class="slogan">Твій шанс вижити. Український пост-апокаліпсис на Godot 4.6.1</p>
-
+        
         <div class="system-status">
             <div class="status-bar"><span>HEALTH</span><div class="fill hp" style="width: 85%;"></div></div>
             <div class="status-bar"><span>HUNGER</span><div class="fill hunger" style="width: 45%;"></div></div>
             <div class="status-bar"><span>STAMINA</span><div class="fill stamina" style="width: 70%;"></div></div>
-        </div>
-        
-        <div class="features">
-            <h3>📂 СТАТУС СИСТЕМИ:</h3>
-            <ul>
-                <li>[ OK ] Реалістична зміна дня та ночі</li>
-                <li>[ OK ] Система метаболізму (Голод / Спрага)</li>
-                <li>[ OK ] Модульна система інвентарю 6x4</li>
-                <li>[ OK ] Шейдерна обводка об'єктів</li>
-            </ul>
         </div>
 
         <div class="media-section">
@@ -147,47 +114,25 @@
                 <div class="team-card">
                     <div class="role">ГОЛОВНИЙ РОЗРОБНИК</div>
                     <div class="name">Shkaf1k</div>
-                    <div class="status-online">ID: 001 | СТАТУС: ACTIVE</div>
                 </div>
                 <div class="team-card">
                     <div class="role">БЕТА-ТЕСТЕР</div>
                     <div class="name">Deflider</div>
-                    <div class="status-online">ID: 002 | СТАТУС: ACTIVE</div>
                 </div>
             </div>
         </div>
 
-        <div class="media-section">
-            <h3>📀 АРХІВНИЙ ЗАПИС: ТРЕЙЛЕР</h3>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com" frameborder="0" allowfullscreen></iframe>
-            </div>
+        <!-- БЛОК СКАЧИВАНИЯ -->
+        <div class="download-box">
+            <div style="color: #ff4500; font-size: 0.8rem; margin-bottom: 10px;">[ УВАГА: ФАЙЛ ПЕРЕВІРЕНО АНТИВІРУСОМ ]</div>
+            <h3>ОТРИМАТИ КЛІЄНТ ГРИ</h3>
+            <p style="font-size: 0.9rem; color: #666;">Версія: Alpha 0.0.1 | Розмір: ~120MB</p>
+            <a href="#" class="download-btn">ЗАВАНТАЖИТИ (DOWNLOAD)</a>
         </div>
 
-        <div class="media-section">
-            <h3>📸 ВІЗУАЛЬНІ ДАНІ (СКРІНШОТИ)</h3>
-            <div class="gallery">
-                <img src="https://via.placeholder.com" alt="S1">
-                <img src="https://via.placeholder.com" alt="S2">
-            </div>
-        </div>
-
-        <div class="media-section">
-            <h3>🛠️ ПРОТОКОЛ РОЗРОБКИ (ROADMAP)</h3>
-            <div class="roadmap">
-                <div class="step done">[✓] Базове керування та FPS камера</div>
-                <div class="step done">[✓] Система крафту багаття</div>
-                <div class="step active">[>] Штучний інтелект зомбі та ворогів</div>
-                <div class="step pending">[ ] Система вогнепальної зброї</div>
-                <div class="step pending">[ ] Розширення карти та локацій</div>
-            </div>
-        </div>
-
-        <p style="margin-top: 40px; font-size: 0.8rem; color: #333; text-align: center; letter-spacing: 1px;">
-            SYSTEM_ID: TERMINAL-4.6.1 | SECTOR: UKRAINE | BUILD: ALPHA-0.0.1
+        <p style="margin-top: 40px; font-size: 0.7rem; color: #333; text-align: center;">
+            ID: TERMINAL-4.6.1 | SECTOR: UKRAINE
         </p>
-        
-        <a href="https://discord.gg" class="btn">ВХІД У ТЕРМІНАЛ DISCORD</a>
     </div>
 </body>
 </html>
